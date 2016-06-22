@@ -1,5 +1,6 @@
 ﻿const path = require('path');
 var webpack = require('webpack');
+var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 
 module.exports = {
@@ -16,17 +17,25 @@ module.exports = {
 	module : {
 		loaders : [
 			{
-				test : /.js?$/,
-				loader : 'babel-loader',
+				test : /\.js$/,
+				loader : 'babel',
 				exclude : /node_modules/,
 				query : {
-					presets : ['es2015', 'react']
-				}
+					cacheDirectory: true,
+					presets : ['es2015', 'react', 'stage-0'],
+					plugins : [
+						["transform-decorators-legacy"]
+					]
+				},
 			},
 			{
-				test : /\.less/,
+				test : /\.less$/,
 				include : [path.join(__dirname, 'css')],
 				loader : 'style-loader!css-loader!less-loader'
+			}, 
+			{
+				test : /\.scss$/,
+				loader : 'style-loader!css-loader!sass-loader'
 			}, {
 				test : /\.(css)$/,
 				include : [path.join(__dirname, 'css')],
