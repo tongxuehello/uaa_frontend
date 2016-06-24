@@ -1,6 +1,5 @@
 ﻿const path = require('path');
 var webpack = require('webpack');
-var webpack = require('webpack');
 var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
 
 module.exports = {
@@ -8,7 +7,7 @@ module.exports = {
 		client : './src/client.js'
 	},
 	output : {
-		path : __dirname + "/build/js/",
+		path : path.resolve(__dirname, "build"),
 		filename : '[name].js'
 	},
 	resolve : {
