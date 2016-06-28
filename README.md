@@ -16,11 +16,15 @@
 # 目录说明
 
 - src
-  - ​
+  - ​components
+  - containers
+  - helpers
+  - redux
+  - theme
+  - utils
+  - client.js
+  - config.js
+  - routes.js
+  - server.js
 - index.html
 - README.md
-
-
-
-
-
