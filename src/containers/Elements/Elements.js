@@ -10,7 +10,9 @@ export default class Home extends Component {
     const styles = require('./Elements.scss');
 	
     return (
-      <BootstrapButton/>
+		<div className="container">
+			<BootstrapButton/>
+		</div>
     );
   }
 }
