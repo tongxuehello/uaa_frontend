@@ -61,8 +61,11 @@ export default class App extends Component {
                 <NavItem eventKey={1}>Chat</NavItem>
               </LinkContainer>}
 
+              <LinkContainer to="/elements">
+                <NavItem eventKey={2}>基本元素</NavItem>
+              </LinkContainer>
               <LinkContainer to="/widgets">
-                <NavItem eventKey={2}>Widgets</NavItem>
+                <NavItem eventKey={2}>组件</NavItem>
               </LinkContainer>
               <LinkContainer to="/survey">
                 <NavItem eventKey={3}>Survey</NavItem>
