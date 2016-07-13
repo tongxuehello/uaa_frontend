@@ -15,8 +15,8 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'UAA Frontend',
-    description: 'uaa前端项目',
+    title: 'UAA Frontend Components',
+    description: 'uaa前端可重用组件项目',
     head: {
       titleTemplate: 'UAA Frontend: %s',
       meta: [

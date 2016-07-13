@@ -10,7 +10,7 @@
 # 运行方法
 
 1. npm install
-2. webpack-dev-server --config webpack.config.js --colors --progress
+2. webpack-dev-server --config webpack.config.js --colors --progress --port 8081
 3. http://localhost:8080/webpack-dev-server/
 
 # 目录说明
