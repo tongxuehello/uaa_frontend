@@ -46,6 +46,7 @@ export default class Widgets extends Component {
       refreshClassName += ' fa-spin';
     }
     const styles = require('./Widgets.scss');
+	const rankInfoStyle = require('./RankInfo.scss');
     return (
       <div className={styles.widgets + ' container'}>
         <h1>
@@ -65,6 +66,59 @@ export default class Widgets extends Component {
         <p>
           This widgets are stored in your session, so feel free to edit it and refresh.
         </p>
+		
+		=========
+		
+		
+		<div className={"row " + rankInfoStyle.rankInfo}>
+			<div className={'col-md-6 ' + rankInfoStyle['margin-left-ajuest']}>
+				<div>
+					<div className={rankInfoStyle['left-width-fix']}>
+						<div className="tile tile-info">
+							<div style={{
+								display:"inline-block",
+								fontSize:"20px",
+								bottom:"5px",
+								position:"relative"
+							}}>
+								500
+							</div>
+						</div>
+					</div>
+
+					<div className={rankInfoStyle['right-width-auto']}>
+						<div className="row">
+							<div className="col-md-6">
+								<div className="movie-num">未统计</div>
+								<div className="grey">
+									上线后30日累计
+									<span className="no_text">No.500+</span>
+								</div>
+							</div>
+							<div className="col-md-6">
+								<div className="movie-num">1,094</div>
+								<div className="grey">
+									历史累计
+									<span className="no_text">No.500+</span>
+								</div>
+							</div>
+						</div>
+						<div className="row margin-top-ajuest">
+							<div className="col-md-12 movie-ranking">
+								
+								--
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		=========
+		
+		
         {error &&
         <div className="alert alert-danger" role="alert">
           <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -100,6 +154,9 @@ export default class Widgets extends Component {
           }
           </tbody>
         </table>}
+		
+
+
 		<InfoBar/>
       </div>
     );
