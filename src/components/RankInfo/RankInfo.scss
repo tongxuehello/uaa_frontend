@@ -1,0 +1,49 @@
+.rankInfo {
+    min-height: 90px;
+	.leftWidthFix {
+		width: 138px;
+		position: absolute;
+		float: left;
+		margin: 0;
+		color: #fff;
+		.tile.tile-info {
+			width: 100%;
+			float: left;
+			margin: 0px;
+			list-style: none;
+			text-decoration: none;
+			font-size: 38px;
+			font-weight: 300;
+			color: #FFF;
+			-moz-border-radius: 0px;
+			-webkit-border-radius: 0px;
+			border-radius: 0px;
+			padding: 10px;
+			margin-bottom: 20px;
+			min-height: 100px;
+			position: relative;
+			border: 1px solid #D5D5D5;
+			text-align: center;
+			border-radius: 50px;
+			min-height: 0px;
+			min-width: 113px;
+			background-color: #36ab00;
+			border-color: transparent;
+			font-size: 32px;
+			.rankNum {
+				display:inline-block;
+				font-size:20px;
+				bottom:5px;
+				position:relative;
+			}
+			.rankText {
+				font-size: 11px;
+				display: inline-block;
+			}
+		}
+	}
+	.right-width-auto {
+		margin-left: 150px;
+		position: relative;
+	}
+}

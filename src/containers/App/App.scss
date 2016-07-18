@@ -1,6 +1,10 @@
+:global(body) {
+	background: #f4f4f4;
+}
 .app {
 	font-family: "Microsoft YaHei", "微软雅黑", "MicrosoftJhengHei", "华文细黑", STHeiti, MingLiu, 'Open Sans', sans-serif;
 	font-size: 14px;
+	background-color: #f4f4f4;
 	:global(.navbar) {
 		background-image: none;
 		$barHeight: 60px;

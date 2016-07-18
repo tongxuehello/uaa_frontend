@@ -6,7 +6,8 @@ import {isLoaded, load as loadWidgets} from '../../redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
 import { WidgetForm } from '../../components';
 import { asyncConnect } from 'redux-async-connect';
-import { InfoBar } from '../../components';
+import { InfoBar, RankInfo } from '../../components';
+import { Panel } from 'react-bootstrap';
 
 @asyncConnect([{
   deferred: true,
@@ -35,131 +36,54 @@ export default class Widgets extends Component {
     editStart: PropTypes.func.isRequired
   };
 
-  render() {
-    const handleEdit = (widget) => {
-      const {editStart} = this.props; // eslint-disable-line no-shadow
-      return () => editStart(String(widget.id));
-    };
-    const {widgets, error, editing, loading, load} = this.props;
-    let refreshClassName = 'fa fa-refresh';
-    if (loading) {
-      refreshClassName += ' fa-spin';
-    }
-    const styles = require('./Widgets.scss');
-	const rankInfoStyle = require('./RankInfo.scss');
-    return (
-      <div className={styles.widgets + ' container'}>
-        <h1>
-          Widgets
-          <button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>
-            <i className={refreshClassName}/> {' '} Reload Widgets
-          </button>
-        </h1>
-        <Helmet title="Widgets"/>
-        <p>
-          If you hit refresh on your browser, the data loading will take place on the server before the page is returned.
-          If you navigated here from another page, the data was fetched from the client after the route transition.
-          This uses the decorator method <code>@asyncConnect</code> with the <code>deferred: true</code> flag. To block
-          a route transition until some data is loaded, remove the <code>deffered: true</code> flag.
-          To always render before loading data, even on the server, use <code>componentDidMount</code>.
-        </p>
-        <p>
-          This widgets are stored in your session, so feel free to edit it and refresh.
-        </p>
-		
-		=========
-		
-		
-		<div className={"row " + rankInfoStyle.rankInfo}>
-			<div className={'col-md-6 ' + rankInfoStyle['margin-left-ajuest']}>
-				<div>
-					<div className={rankInfoStyle['left-width-fix']}>
-						<div className="tile tile-info">
-							<div style={{
-								display:"inline-block",
-								fontSize:"20px",
-								bottom:"5px",
-								position:"relative"
-							}}>
-								500
-							</div>
-						</div>
-					</div>
+	render() {
+		const handleEdit = (widget) => {
+			const {editStart} = this.props; // eslint-disable-line no-shadow
+			return () => editStart(String(widget.id));
+		};
+		const {widgets, error, editing, loading, load} = this.props;
+		let refreshClassName = 'fa fa-refresh';
+		if (loading) {
+			refreshClassName += ' fa-spin';
+		}
+		const styles = require('./Widgets.scss');
+		return (
+			<div className={styles.widgets + ' container'}>
+				<h1>
+					组件
+					<button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>
+						<i className={refreshClassName}/> {' '} Reload Widgets
+					</button>
+				</h1>
 
-					<div className={rankInfoStyle['right-width-auto']}>
-						<div className="row">
-							<div className="col-md-6">
-								<div className="movie-num">未统计</div>
-								<div className="grey">
-									上线后30日累计
-									<span className="no_text">No.500+</span>
-								</div>
-							</div>
-							<div className="col-md-6">
-								<div className="movie-num">1,094</div>
-								<div className="grey">
-									历史累计
-									<span className="no_text">No.500+</span>
-								</div>
-							</div>
+				<Helmet title="组件"/>
+
+				<h2>详情榜单</h2>
+				
+				<Panel className={styles.uaaPannel}>
+					<div className={styles.pannelTitle}>电视剧: 我的朋友陈白露小姐</div>
+					<div className="row" style={{marginLeft:0}}>
+						<div className="col-md-6">
+							<RankInfo/>
 						</div>
-						<div className="row margin-top-ajuest">
-							<div className="col-md-12 movie-ranking">
-								
-								--
-								
-							</div>
+						<div className="col-md-6">
+							<RankInfo/>
 						</div>
 					</div>
-				</div>
+					
+					<div className="row" style={{marginLeft:0}}>
+						<div className="col-md-6">
+							<RankInfo/>
+						</div>
+						<div className="col-md-6">
+							<RankInfo/>
+						</div>
+					</div>
+				</Panel>
+				
+				<InfoBar/>
 			</div>
-		</div>
-		
-		
-		=========
-		
-		
-        {error &&
-        <div className="alert alert-danger" role="alert">
-          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          {' '}
-          {error}
-        </div>}
-        {widgets && widgets.length &&
-        <table className="table table-striped">
-          <thead>
-          <tr>
-            <th className={styles.idCol}>ID</th>
-            <th className={styles.colorCol}>Color</th>
-            <th className={styles.sprocketsCol}>Sprockets</th>
-            <th className={styles.ownerCol}>Owner</th>
-            <th className={styles.buttonCol}></th>
-          </tr>
-          </thead>
-          <tbody>
-          {
-            widgets.map((widget) => editing[widget.id] ?
-              <WidgetForm formKey={String(widget.id)} key={String(widget.id)} initialValues={widget}/> :
-              <tr key={widget.id}>
-                <td className={styles.idCol}>{widget.id}</td>
-                <td className={styles.colorCol}>{widget.color}</td>
-                <td className={styles.sprocketsCol}>{widget.sprocketCount}</td>
-                <td className={styles.ownerCol}>{widget.owner}</td>
-                <td className={styles.buttonCol}>
-                  <button className="btn btn-primary" onClick={handleEdit(widget)}>
-                    <i className="fa fa-pencil"/> Edit
-                  </button>
-                </td>
-              </tr>)
-          }
-          </tbody>
-        </table>}
-		
-
-
-		<InfoBar/>
-      </div>
-    );
-  }
+		);
+	}
 }
 
