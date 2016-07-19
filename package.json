@@ -7,6 +7,7 @@
     "jquery": "^2.2.2",
     "lru-memoize": "^1.0.1",
     "multireducer": "^2.0.0",
+    "numeral": "^1.5.3",
     "react": "^0.14.8",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^0.14.8",

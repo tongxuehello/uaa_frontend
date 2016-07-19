@@ -41,9 +41,31 @@
 				display: inline-block;
 			}
 		}
-	}
-	.right-width-auto {
+	};
+	.rightWidthAuto {
 		margin-left: 150px;
 		position: relative;
-	}
+		.movieNum {
+			font-weight: 700;
+			font-style: normal;
+			font-size: 30px;
+		}
+		.rankNum {
+			color: #36ab00;
+			font-weight: 900;
+		}
+		.movieRanking {
+			margin: 2px 0;
+			.link {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+				font-size: 12px;
+				padding: 2px;
+				margin: 0 -1px 2px 0!important;
+				color: #000;
+			}
+		}
+	};
 }

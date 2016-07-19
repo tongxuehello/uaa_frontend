@@ -6,8 +6,7 @@ import {isLoaded, load as loadWidgets} from '../../redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
 import { WidgetForm } from '../../components';
 import { asyncConnect } from 'redux-async-connect';
-import { InfoBar, RankInfo } from '../../components';
-import { Panel } from 'react-bootstrap';
+import { InfoBar, MovieInfo } from '../../components';
 
 @asyncConnect([{
   deferred: true,
@@ -60,26 +59,7 @@ export default class Widgets extends Component {
 
 				<h2>详情榜单</h2>
 				
-				<Panel className={styles.uaaPannel}>
-					<div className={styles.pannelTitle}>电视剧: 我的朋友陈白露小姐</div>
-					<div className="row" style={{marginLeft:0}}>
-						<div className="col-md-6">
-							<RankInfo/>
-						</div>
-						<div className="col-md-6">
-							<RankInfo/>
-						</div>
-					</div>
-					
-					<div className="row" style={{marginLeft:0}}>
-						<div className="col-md-6">
-							<RankInfo/>
-						</div>
-						<div className="col-md-6">
-							<RankInfo/>
-						</div>
-					</div>
-				</Panel>
+				<MovieInfo/>
 				
 				<InfoBar/>
 			</div>

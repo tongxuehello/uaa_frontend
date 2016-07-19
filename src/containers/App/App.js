@@ -66,12 +66,18 @@ export default class App extends Component {
               <LinkContainer to="/widgets">
                 <NavItem eventKey={2}>组件</NavItem>
               </LinkContainer>
+              <LinkContainer to="/asyncApp">
+                <NavItem eventKey={2}>AsyncApp</NavItem>
+              </LinkContainer>
               <LinkContainer to="/survey">
                 <NavItem eventKey={3}>表单</NavItem>
               </LinkContainer>
             </Nav>
+			
+			
             {user &&
             <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
+			
             <Nav navbar pullRight>
               <NavItem eventKey={1} target="_blank" title="View on Github" href="https://github.com/erikras/react-redux-universal-hot-example">
                 <i className="fa fa-github"/> 反馈中心
@@ -90,7 +96,9 @@ export default class App extends Component {
                 </NavItem>
               </LinkContainer>}
             </Nav>
+			
           </Navbar.Collapse>
+		  
         </Navbar>
 
         <div className={styles.appContent}>
