@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import { bindActionCreators } from 'redux';
 import Helmet from 'react-helmet';
 import {connect} from 'react-redux';
 import * as widgetActions from '../../redux/modules/widgets';
@@ -7,6 +8,7 @@ import {initializeWithKey} from 'redux-form';
 import { WidgetForm } from '../../components';
 import { asyncConnect } from 'redux-async-connect';
 import { InfoBar, MovieInfo } from '../../components';
+import { fetchMovieInfo } from '../../redux/modules/movieInfo'
 
 @asyncConnect([{
   deferred: true,
@@ -16,42 +18,50 @@ import { InfoBar, MovieInfo } from '../../components';
     }
   }
 }])
-@connect(
-  state => ({
-    widgets: state.widgets.data,
-    editing: state.widgets.editing,
-    error: state.widgets.error,
-    loading: state.widgets.loading
-  }),
-  {...widgetActions, initializeWithKey })
+@connect( 
+	//mapStateToProps
+	state => {
+		console.log("state: ",state);
+		const { isFetching, infoData, lastUpdated } = state.movieInfo
+		return {
+			isFetching,
+			infoData,
+			lastUpdated
+		}
+	},
+	//mapDispatchToProps
+	dispatch => ({
+		...bindActionCreators({
+			fetchMovieInfo
+		},dispatch)
+	})
+)
 export default class Widgets extends Component {
-  static propTypes = {
-    widgets: PropTypes.array,
-    error: PropTypes.string,
-    loading: PropTypes.bool,
-    initializeWithKey: PropTypes.func.isRequired,
-    editing: PropTypes.object.isRequired,
-    load: PropTypes.func.isRequired,
-    editStart: PropTypes.func.isRequired
-  };
-
+	static propTypes = {
+		isFetching: PropTypes.bool,
+		infoData: PropTypes.object,
+		lastUpdated: PropTypes.number
+	}
+	
+	componentDidMount() {
+		const { fetchMovieInfo } = this.props
+		console.log("this.props",this.props)
+		fetchMovieInfo(507646700)
+	}
+	
 	render() {
 		const handleEdit = (widget) => {
 			const {editStart} = this.props; // eslint-disable-line no-shadow
 			return () => editStart(String(widget.id));
 		};
-		const {widgets, error, editing, loading, load} = this.props;
-		let refreshClassName = 'fa fa-refresh';
-		if (loading) {
-			refreshClassName += ' fa-spin';
-		}
+		const {infoData} = this.props;
 		const styles = require('./Widgets.scss');
 		return (
 			<div className={styles.widgets + ' container'}>
 				<h1>
 					组件
-					<button className={styles.refreshBtn + ' btn btn-success'} onClick={load}>
-						<i className={refreshClassName}/> {' '} Reload Widgets
+					<button className={styles.refreshBtn + ' btn btn-success'}>
+						<i/> {' '} Reload Widgets
 					</button>
 				</h1>
 
@@ -59,7 +69,13 @@ export default class Widgets extends Component {
 
 				<h2>详情榜单</h2>
 				
-				<MovieInfo/>
+				<MovieInfo {...infoData}/>
+				
+				<MovieInfo {...infoData}/>
+				
+				<MovieInfo {...infoData}/>
+				
+				<MovieInfo {...infoData}/>
 				
 				<InfoBar/>
 			</div>

@@ -3,6 +3,7 @@ export Chat from './Chat/Chat';
 export Home from './Home/Home';
 export Elements from './Elements/Elements';
 export Widgets from './Widgets/Widgets';
+export AsyncApp from './AsyncApp/AsyncApp';
 export About from './About/About';
 export Login from './Login/Login';
 export LoginSuccess from './LoginSuccess/LoginSuccess';

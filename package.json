@@ -19,6 +19,7 @@
     "redux": "^3.5.2",
     "redux-async-connect": "^1.0.0-rc4",
     "redux-form": "^5.2.5",
+    "redux-thunk": "^2.1.0",
     "url-loader": "^0.5.7"
   },
   "devDependencies": {
