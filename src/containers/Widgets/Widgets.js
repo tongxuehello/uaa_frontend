@@ -54,7 +54,6 @@ export default class Widgets extends Component {
 			const {editStart} = this.props; // eslint-disable-line no-shadow
 			return () => editStart(String(widget.id));
 		};
-		const {infoData} = this.props;
 		const styles = require('./Widgets.scss');
 		return (
 			<div className={styles.widgets + ' container'}>
@@ -69,13 +68,7 @@ export default class Widgets extends Component {
 
 				<h2>详情榜单</h2>
 				
-				<MovieInfo {...infoData}/>
-				
-				<MovieInfo {...infoData}/>
-				
-				<MovieInfo {...infoData}/>
-				
-				<MovieInfo {...infoData}/>
+				<MovieInfo {...this.props.infoData}/>
 				
 				<InfoBar/>
 			</div>

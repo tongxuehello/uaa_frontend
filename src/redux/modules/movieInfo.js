@@ -147,8 +147,8 @@ export function fetchMovieInfo(qipu_id) {
 	console.log("fetchPostsIfNeeded");
 	return dispatch => {
 		dispatch(requestPosts(qipu_id))
-		//return fetch(`http://portal.uaa.qiyi.domain/analyzing/dianying/detail/rank?qipu_id=${qipu_id}`,{
-		return fetch(`http://localhost:8080/detail/rank?qipu_id=${qipu_id}`,{
+		return fetch(`http://portal.uaa.qiyi.domain/analyzing/dianying/detail/rank?qipu_id=${qipu_id}`,{
+		//return fetch(`http://localhost:8080/detail/rank?qipu_id=${qipu_id}`,{
 			mode: "cors"
 		})
 			.then(response => response.json())
