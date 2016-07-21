@@ -8,6 +8,7 @@ const SAVE_SUCCESS = 'redux-example/widgets/SAVE_SUCCESS';
 const SAVE_FAIL = 'redux-example/widgets/SAVE_FAIL';
 
 const initialState = {
+  qipu_id: 507646700,
   loaded: false,
   editing: {},
   saveError: {}

@@ -6,6 +6,7 @@
     "file-loader": "^0.9.0",
     "jquery": "^2.2.2",
     "lru-memoize": "^1.0.1",
+    "moment": "^2.14.1",
     "multireducer": "^2.0.0",
     "numeral": "^1.5.3",
     "react": "^0.14.8",

@@ -88,8 +88,6 @@ const dealWithMovieInfoData = (rank_data) => {
 		}
 	}];
 	return {
-		"channelName": "电影",
-		"movieName": "夜孔雀",
 		"rate" : {
 			"real" : null,
 			"estimate" : 5
@@ -108,11 +106,14 @@ export default function reducer(state = initialState, action) {
 			isFetching: true
 		}
 	case RECEIVE_POSTS:
+		console.log("dealWithMovieInfoData(action)",dealWithMovieInfoData(action));
 		return {
 			...state,
+			ret_qipu_id: action.qipu_id,
 			isFetching: false,
 			infoData: dealWithMovieInfoData(action.posts),
-			lastUpdated: action.receivedAt
+			lastUpdated: action.receivedAt,
+			basicInfo: action.basicInfo
 		}
 	default:
 		return state;
@@ -133,25 +134,28 @@ export function requestPosts(qipu_id) {
 }
 
 // 接收数据
-export function receivePosts(qipu_id, json) {
+export function receivePosts(qipu_id, basicInfo, json) {
 	return {
 		type: RECEIVE_POSTS,
 		qipu_id,
+		basicInfo: basicInfo.data,
 		posts: json.rank,
 		receivedAt: Date.now()
 	}
 }
 
+const movieRankPromise = qipu_id => (
+	fetch(`http://portal.uaa.qiyi.domain/analyzing/dianying/detail/rank?qipu_id=${qipu_id}`,{
+		mode: "cors"
+	}).then(response => response.json())
+)
+	
 // 根据qipu_id获取movieInfo
-export function fetchMovieInfo(qipu_id) {
+export function fetchMovieInfo(movieInfoPromise, qipu_id) {
 	console.log("fetchPostsIfNeeded");
 	return dispatch => {
 		dispatch(requestPosts(qipu_id))
-		return fetch(`http://portal.uaa.qiyi.domain/analyzing/dianying/detail/rank?qipu_id=${qipu_id}`,{
-		//return fetch(`http://localhost:8080/detail/rank?qipu_id=${qipu_id}`,{
-			mode: "cors"
-		})
-			.then(response => response.json())
-			.then(json => dispatch(receivePosts(qipu_id, json)))
+		return Promise.all([movieInfoPromise,movieRankPromise(qipu_id)])
+				.then(values => dispatch(receivePosts(qipu_id, values[0],values[1])))
 	}
 }

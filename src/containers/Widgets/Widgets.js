@@ -8,53 +8,47 @@ import {initializeWithKey} from 'redux-form';
 import { WidgetForm } from '../../components';
 import { asyncConnect } from 'redux-async-connect';
 import { InfoBar, MovieInfo } from '../../components';
-import { fetchMovieInfo } from '../../redux/modules/movieInfo'
+import MovieInfoContainer from './MovieInfoContainer';
 
 @asyncConnect([{
-  deferred: true,
-  promise: ({store: {dispatch, getState}}) => {
-    if (!isLoaded(getState())) {
-      return dispatch(loadWidgets());
-    }
-  }
+	deferred: true,
+	promise: ({store: {dispatch, getState}}) => {
+		if (!isLoaded(getState())) {
+			return dispatch(loadWidgets());
+		}
+	}
 }])
 @connect( 
 	//mapStateToProps
+	/*
 	state => {
 		console.log("state: ",state);
-		const { isFetching, infoData, lastUpdated } = state.movieInfo
+		const { qipu_id } = state.widgets
 		return {
-			isFetching,
-			infoData,
-			lastUpdated
+			qipu_id
 		}
-	},
-	//mapDispatchToProps
-	dispatch => ({
-		...bindActionCreators({
-			fetchMovieInfo
-		},dispatch)
-	})
+	}
+	*/
 )
 export default class Widgets extends Component {
 	static propTypes = {
-		isFetching: PropTypes.bool,
-		infoData: PropTypes.object,
-		lastUpdated: PropTypes.number
+		//qipu_id: PropTypes.string
 	}
 	
-	componentDidMount() {
-		const { fetchMovieInfo } = this.props
-		console.log("this.props",this.props)
-		fetchMovieInfo(507646700)
-	}
+	
 	
 	render() {
-		const handleEdit = (widget) => {
-			const {editStart} = this.props; // eslint-disable-line no-shadow
-			return () => editStart(String(widget.id));
-		};
+		const getMovieBasicInfoPromise = qipu_id => (
+			fetch(`http://portal.uaa.qiyi.domain/analyzing/dianying/detail/info?qipu_id=${qipu_id}`,{
+				mode: "cors"
+			}).then(response=>(response.json()))
+		);
+		
 		const styles = require('./Widgets.scss');
+		console.log("=this.props",this.props)
+		
+		const { infoData,isFetching,lastUpdated } = this.props;
+		
 		return (
 			<div className={styles.widgets + ' container'}>
 				<h1>
@@ -68,7 +62,9 @@ export default class Widgets extends Component {
 
 				<h2>详情榜单</h2>
 				
-				<MovieInfo {...this.props.infoData}/>
+				<MovieInfoContainer movieInfoPromise={getMovieBasicInfoPromise("496729700")} qipu_id="496729700"/>
+				
+				<MovieInfoContainer movieInfoPromise={getMovieBasicInfoPromise("453152200")} qipu_id="453152200"/>
 				
 				<InfoBar/>
 			</div>
