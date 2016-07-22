@@ -20,6 +20,7 @@ var getRankData = function(json,index_type,stat_type,date_type,item_type) {
 const dealWithMovieInfoData = (rank_data) => {
 	var rank_arr = [{
 		title: "吸金指数",
+		index_type: "money_index",
 		A: {
 			title: "当日排序",
 			rank_num: getRankData(rank_data,"money_index","statistic_time","day_1","rank_num"),
@@ -37,6 +38,7 @@ const dealWithMovieInfoData = (rank_data) => {
 		}
 	},{
 		title: "吸金金额",
+		index_type: "money_amount",
 		A: {
 			title: "当日排序",
 			rank_num: getRankData(rank_data,"money_amount","statistic_time","day_1","rank_num"),
@@ -54,6 +56,7 @@ const dealWithMovieInfoData = (rank_data) => {
 		}
 	},{
 		title: "热门指数",
+		index_type: "all_index",
 		A: {
 			title: "当日排序",
 			rank_num: getRankData(rank_data,"all_index","statistic_time","day_1","rank_num"),
@@ -71,6 +74,7 @@ const dealWithMovieInfoData = (rank_data) => {
 		}
 	},{
 		title: "观看率",
+		index_type: "view_rate",
 		A: {
 			title: "当日排序",
 			rank_num: getRankData(rank_data,"view_rate","statistic_time","day_1","rank_num"),
@@ -106,7 +110,6 @@ export default function reducer(state = initialState, action) {
 			isFetching: true
 		}
 	case RECEIVE_POSTS:
-		console.log("dealWithMovieInfoData(action)",dealWithMovieInfoData(action));
 		return {
 			...state,
 			ret_qipu_id: action.qipu_id,
@@ -152,7 +155,6 @@ const movieRankPromise = qipu_id => (
 	
 // 根据qipu_id获取movieInfo
 export function fetchMovieInfo(movieInfoPromise, qipu_id) {
-	console.log("fetchPostsIfNeeded");
 	return dispatch => {
 		dispatch(requestPosts(qipu_id))
 		return Promise.all([movieInfoPromise,movieRankPromise(qipu_id)])

@@ -8,7 +8,6 @@ import { fetchMovieInfo } from '../../redux/modules/movieInfo'
 @connect( 
 	//mapStateToProps
 	state => {
-		console.log("state: ",state);
 		const { ret_qipu_id, isFetching, infoData, lastUpdated, basicInfo } = state.movieInfo
 		return {
 			ret_qipu_id,
