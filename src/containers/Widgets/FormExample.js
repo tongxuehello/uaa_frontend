@@ -32,39 +32,39 @@ export default class ContactForm extends Component {
 			<div className="col-md-8">
 				<Panel className="uaaPannel">
 					<form onSubmit={handleSubmit(data=>{setFormState(data)})}>
-						<div>
+						<div className="form-group">
 						  <label>First Name</label>
 						  <div>
-							<input type="text" placeholder="First Name" {...firstName}/>
+							<input type="text" className="form-control" placeholder="First Name" {...firstName}/>
 						  </div>
 						</div>
-						<div>
+						<div className="form-group">
 						  <label>Last Name</label>
 						  <div>
-							<input type="text" placeholder="Last Name" {...lastName}/>
+							<input type="text" className="form-control" placeholder="Last Name" {...lastName}/>
 						  </div>
 						</div>
-						<div>
+						<div className="form-group">
 						  <label>Email</label>
 						  <div>
-							<input type="email" placeholder="Email" {...email}/>
+							<input type="email" className="form-control" placeholder="Email" {...email}/>
 						  </div>
 						</div>
-						<div>
+						<div className="form-group">
 						  <label>Sex</label>
 						  <div>
-							<label>
+							<label className="radio-inline">
 							  <input type="radio" {...sex} value="male" checked={sex.value === 'male'}/> Male
 							</label>
-							<label>
+							<label className="radio-inline">
 							  <input type="radio" {...sex} value="female" checked={sex.value === 'female'}/> Female
 							</label>
 						  </div>
 						</div>
-						<div>
+						<div className="form-group">
 						  <label>Favorite Color</label>
 						  <div>
-							<select
+							<select className="form-control" 
 							  {...favoriteColor}
 							  // required syntax for reset form to work
 							  // undefined will not change value to first empty option
@@ -77,15 +77,15 @@ export default class ContactForm extends Component {
 							</select>
 						  </div>
 						</div>
-						<div>
+						<div className="form-group">
 						  <label>
 							<input type="checkbox" {...employed}/> Employed
 						  </label>
 						</div>
-						<div>
+						<div className="form-group">
 						  <label>Notes</label>
 						  <div>
-							<textarea
+							<textarea className="form-control"
 							  {...notes}
 							  // required for reset form to work (only on textarea's)
 							  // see: https://github.com/facebook/react/issues/2533
