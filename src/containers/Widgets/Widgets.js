@@ -11,6 +11,7 @@ import { InfoBar, MovieInfo } from '../../components';
 
 import MovieInfoContainer from './MovieInfoContainer';
 import FormExample from './FormExample';
+import WizardFormExample from './WizardForm/WizardFormExample';
 
 import { CounterButton, GithubButton } from '../../components';
 
@@ -41,8 +42,6 @@ export default class Widgets extends Component {
 	static propTypes = {
 		//qipu_id: PropTypes.string
 	}
-	
-	
 	
 	render() {
 		const getMovieBasicInfoPromise = qipu_id => (
@@ -161,6 +160,10 @@ export default class Widgets extends Component {
 				<h2>表单</h2>
 				
 				<FormExample/>
+				
+				<h2>分页表单</h2>
+				
+				<WizardFormExample/>
 
 				<InfoBar/>
 

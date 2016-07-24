@@ -157,6 +157,7 @@ const movieRankPromise = qipu_id => (
 export function fetchMovieInfo(movieInfoPromise, qipu_id) {
 	return dispatch => {
 		dispatch(requestPosts(qipu_id))
+		console.log("根据qipu_id获取movieInfo");
 		return Promise.all([movieInfoPromise,movieRankPromise(qipu_id)])
 				.then(values => dispatch(receivePosts(qipu_id, values[0],values[1])))
 	}

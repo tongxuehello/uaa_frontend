@@ -7,10 +7,11 @@ import { Panel } from 'react-bootstrap';
 
 @reduxForm({ // <----- THIS IS THE IMPORTANT PART!
 	form: 'contact',                           // a unique name for this form
-	fields: [ 'firstName', 'lastName', 'email', 'sex', 'favoriteColor', 'employed', 'notes' ], // all the fields in your form
+	fields: [ 'reportName', 'reportType', 'reportDiscription', 'email', 'favoriteColor', 'employed', 'notes' ], // all the fields in your form
 	initialValues: {
-		firstName: 'John',
-		lastName: 'Doe',
+		reportName: '测试报告',
+		reportType: 'normal',
+		reportDiscription: '测试内容',
 		favoriteColor: '00ff00',
 		notes: 'Born to write amazing Redux code.'
 	}
@@ -18,7 +19,7 @@ import { Panel } from 'react-bootstrap';
 export default class ContactForm extends Component {
 	render() {
 		const {
-			fields: { firstName, lastName, email, sex, favoriteColor, employed, notes },
+			fields: { reportName, reportType, reportDiscription, email, favoriteColor, employed, notes },
 				handleSubmit,
 				resetForm,
 				submitting
@@ -33,15 +34,26 @@ export default class ContactForm extends Component {
 				<Panel className="uaaPannel">
 					<form onSubmit={handleSubmit(data=>{setFormState(data)})}>
 						<div className="form-group">
-						  <label>First Name</label>
+						  <label>报告名称</label>
 						  <div>
-							<input type="text" className="form-control" placeholder="First Name" {...firstName}/>
+							<input type="text" className="form-control" placeholder="请输入报告名称" {...reportName}/>
 						  </div>
 						</div>
 						<div className="form-group">
-						  <label>Last Name</label>
+						  <label>报告类型</label>
 						  <div>
-							<input type="text" className="form-control" placeholder="Last Name" {...lastName}/>
+							<label className="radio-inline">
+							  <input type="radio" {...reportType} value="temporary" checked={reportType.value === 'temporary'}/> 报告仅计算一次
+							</label>
+							<label className="radio-inline">
+							  <input type="radio" {...reportType} value="normal" checked={reportType.value === 'normal'}/> 报告每30天生成一次
+							</label>
+						  </div>
+						</div>
+						<div className="form-group">
+						  <label>报告描述</label>
+						  <div>
+							<input type="text" className="form-control" placeholder="请输入报告描述" {...reportDiscription}/>
 						  </div>
 						</div>
 						<div className="form-group">
@@ -50,17 +62,7 @@ export default class ContactForm extends Component {
 							<input type="email" className="form-control" placeholder="Email" {...email}/>
 						  </div>
 						</div>
-						<div className="form-group">
-						  <label>Sex</label>
-						  <div>
-							<label className="radio-inline">
-							  <input type="radio" {...sex} value="male" checked={sex.value === 'male'}/> Male
-							</label>
-							<label className="radio-inline">
-							  <input type="radio" {...sex} value="female" checked={sex.value === 'female'}/> Female
-							</label>
-						  </div>
-						</div>
+
 						<div className="form-group">
 						  <label>Favorite Color</label>
 						  <div>
@@ -92,13 +94,15 @@ export default class ContactForm extends Component {
 							  value={notes.value || ''}/>
 						  </div>
 						</div>
-						<div>
-						  <button type="submit" disabled={submitting}>
-							{submitting ? <i/> : <i/>} Submit
-						  </button>
-						  <button type="button" disabled={submitting} onClick={resetForm}>
-							Clear Values
-						  </button>
+						<div className="form-group">
+							<div role="toolbar" className="btn-toolbar">
+							  <button type="submit" className="btn btn-primary" disabled={submitting}>
+								{submitting ? <i/> : <i/>} Submit
+							  </button>
+							  <button type="button" className="btn btn-default" disabled={submitting} onClick={resetForm}>
+								Clear Values
+							  </button>
+							</div>
 						</div>
 					  </form>
 				  </Panel>
@@ -106,7 +110,12 @@ export default class ContactForm extends Component {
 				<div className="col-md-4">
 					<Panel className="uaaPannel">
 					{
-						Object.entries(this.props.fields).map((item)=>(item[1].value!="" && <div key={item[0]} style={{marginBottom:'10px'}}><label className="label label-default">{item[0]} : {item[1].value}</label></div>))
+						Object.entries(this.props.fields).map((item)=>
+							item[1].value!="" && 
+							<div key={item[0]} style={{marginBottom:'10px'}}>
+								<label className="label label-default">{item[0]} : {item[1].value}</label>
+							</div>
+						)
 					}
 					</Panel>
 				</div>
