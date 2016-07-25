@@ -30,9 +30,11 @@ export default class ReduxFormCheckbox extends Component {
 			<div>
 			{
 			inputOptions.map(({value,text},index) =>
-				<label className="checkbox-inline" key={index}>
+				<label className="radio-inline" key={index}>
 					<input
-						type="checkbox"
+						type="radio"
+						{...reduxFormProp}
+						value={value}
 						checked={reduxFormProp.value === value}
 					/> {text}
 				</label>

@@ -66,10 +66,7 @@ export default class App extends Component {
               <LinkContainer to="/widgets">
                 <NavItem eventKey={2}>组件</NavItem>
               </LinkContainer>
-              <LinkContainer to="/asyncApp">
-                <NavItem eventKey={2}>AsyncApp</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/survey">
+              <LinkContainer to="/form">
                 <NavItem eventKey={3}>表单</NavItem>
               </LinkContainer>
             </Nav>

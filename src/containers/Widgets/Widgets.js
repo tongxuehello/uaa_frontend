@@ -5,16 +5,11 @@ import {connect} from 'react-redux';
 import * as widgetActions from '../../redux/modules/widgets';
 import {isLoaded, load as loadWidgets} from '../../redux/modules/widgets';
 import {initializeWithKey} from 'redux-form';
-import { WidgetForm } from '../../components';
 import { asyncConnect } from 'redux-async-connect';
 import { InfoBar, MovieInfo } from '../../components';
 
 import MovieInfoContainer from './MovieInfoContainer';
-import FormExample from './FormExample';
-import WizardFormExample from './WizardForm/WizardFormExample';
-
 import { CounterButton, GithubButton } from '../../components';
-
 import RankInfo from '../../components/MovieInfo/RankInfo';
 import { Panel } from 'react-bootstrap';
 
@@ -156,14 +151,6 @@ export default class Widgets extends Component {
 					<CounterButton multireducerKey="counter2"/>
 					<CounterButton multireducerKey="counter3"/>
 				</Panel>
-				
-				<h2>表单</h2>
-				
-				<FormExample/>
-				
-				<h2>分页表单</h2>
-				
-				<WizardFormExample/>
 
 				<InfoBar/>
 

@@ -6,11 +6,10 @@ import {
     Home,
     Elements,
     Widgets,
-    AsyncApp,
     About,
     Login,
     LoginSuccess,
-    Survey,
+    ReduxForm,
     NotFound,
   } from './containers';
 
@@ -33,10 +32,8 @@ export default (store) => {
       <Route path="elements" component={Elements}/>
       <Route path="about" component={About}/>
       <Route path="login" component={Login}/>
-      <Route path="survey" component={Survey}/>
+      <Route path="form" component={ReduxForm}/>
       <Route path="widgets" component={Widgets}/>
-      <Route path="asyncApp" component={AsyncApp}/>
-
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
     </Route>
